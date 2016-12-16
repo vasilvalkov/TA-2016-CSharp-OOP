@@ -4,7 +4,7 @@ namespace DefineClasses
 {
     class Display
     {   // fields
-        private double? size;
+        private double? size = null;
         private ulong? numberOfColors = null;
         // constructors
         public Display()

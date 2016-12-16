@@ -18,9 +18,8 @@ namespace DefineClasses
             iPhone4S = new GSM("Apple", "iPhone 4S", 600.00, "Apple Store", new Battery("Apple", 200, 8, BatteryType.LiPol), new Display(3.5, 16000000));
         }
         public GSM(string manufacturer, string model)
+            : this(manufacturer, model, null, null, new Battery(), new Display())
         {
-            this.Manufacturer = manufacturer;
-            this.Model = model;
         }
         public GSM(string manufacturer, string model, double? price)
             : this(manufacturer, model, price, null, new Battery(), new Display())
@@ -63,8 +62,9 @@ namespace DefineClasses
         {
         }
         public GSM(string manufacturer, string model, double? price, string owner, Battery battery, Display display)
-            : this(manufacturer, model)
         {
+            this.Manufacturer = manufacturer;
+            this.Model = model;
             this.Price = price;
             this.OwnerName = owner;
             this.BatteryInfo = battery;
@@ -132,11 +132,14 @@ namespace DefineClasses
 
             set
             {
-                foreach (var symbol in value)
-                {   // Validate maufacturer name
-                    if (!char.IsLetter(symbol) && symbol != ' ')
-                    {
-                        throw new FormatException("Owner name could contain only letters and whitespaces!");
+                if (value != null)
+                {
+                    foreach (var symbol in value)
+                    {   // Validate maufacturer name
+                        if (!char.IsLetter(symbol) && symbol != ' ')
+                        {
+                            throw new FormatException("Owner name could contain only letters and whitespaces!");
+                        }
                     }
                 }
                 this.ownerName = value;
