@@ -204,5 +204,16 @@ namespace DefineClasses
         {
             this.callHistory.Clear();
         }
+        public double CalculatePriceOwed(double unitPrice)
+        {
+            double durations = 0;
+
+            foreach (var call in this.CallHistory)
+            {
+                durations += call.Duration;
+            }
+
+            return (durations / 60) * unitPrice;
+        }
     }
 }
