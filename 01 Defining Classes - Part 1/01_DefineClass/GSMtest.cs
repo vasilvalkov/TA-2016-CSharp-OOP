@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace DefineClasses
 {
@@ -14,16 +15,36 @@ namespace DefineClasses
                     new GSM("Xiaomi", "Mi 5", 700, new Display(5.15, 16000000)),
                 };
 
-            int i = 1;
-            foreach (var phone in phones)
+            #region Problem 7 // Uncomment region to test problem #7
+            //int i = 1;
+            //foreach (var phone in phones)
+            //{
+            //    Console.WriteLine("Phone {0} specs", i++);
+            //    Console.WriteLine("==================================");
+            //    Console.WriteLine(phone.ToString());
+            //}
+            //Console.WriteLine("iPhone 4S specs");
+            //Console.WriteLine("==================================");
+            //Console.WriteLine(GSM.IPhone4S.ToString()); 
+            #endregion
+
+            int milliseconds = 2000;
+            phones[0].AddCall(new Call("0888555555", 120));
+            Thread.Sleep(milliseconds);
+            phones[0].AddCall(new Call("0888666666", 260.5));
+            Thread.Sleep(milliseconds);
+            phones[0].AddCall(new Call("0881424242", 40));
+            Thread.Sleep(milliseconds);
+            phones[0].AddCall(new Call("0888555555", 1352));
+
+            foreach (var call in phones[0].CallHistory)
             {
-                Console.WriteLine("Phone {0} specs", i++);
-                Console.WriteLine("==================================");
-                Console.WriteLine(phone.ToString());
+                Console.WriteLine("On {0} at {1} > talked to {2} for {3:0.##} seconds", 
+                    call.Date.ToString(@"dd-MMM-yyyy"), 
+                    call.Time.ToString(@"hh\:mm\:ss"),
+                    call.DialedNumber,
+                    call.Duration);
             }
-            Console.WriteLine("iPhone 4S specs");
-            Console.WriteLine("==================================");
-            Console.WriteLine(GSM.IPhone4S.ToString());
         }
     }
 }

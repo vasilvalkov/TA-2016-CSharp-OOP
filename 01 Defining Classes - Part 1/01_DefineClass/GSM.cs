@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace DefineClasses
         private string manufacturer;
         private Battery battery;
         private Display display;
+        private List<Call> callHistory;
         // constructors
         static GSM()
         {
@@ -145,6 +147,7 @@ namespace DefineClasses
                 this.ownerName = value;
             }
         }
+        public List<Call> CallHistory { get { return callHistory; } }
         // methods
         public override string ToString()
         {
@@ -184,6 +187,22 @@ namespace DefineClasses
                 this.battery.HoursTalk != null ? this.battery.HoursTalk.ToString() + " hours" : "Not Available");
             info.AppendLine();
             return info.ToString();
+        }
+        public void AddCall(Call call)
+        {
+            if (callHistory == null)
+            {
+                callHistory = new List<Call>();
+            }
+            this.callHistory.Add(call);
+        }
+        public void DeleteCall(int callIndex)
+        {
+            this.callHistory.RemoveAt(callIndex);
+        }
+        public void ClearCallHistory()
+        {
+            this.callHistory.Clear();
         }
     }
 }
