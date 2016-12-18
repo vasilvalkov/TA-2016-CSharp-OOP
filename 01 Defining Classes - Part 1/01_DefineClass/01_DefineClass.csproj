@@ -48,8 +48,10 @@
     <Compile Include="Classes\Call.cs" />
     <Compile Include="Classes\GSM.cs" />
     <Compile Include="Classes\Display.cs" />
+    <Compile Include="Classes\GSMCallHistoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GSMTest.cs" />
+    <Compile Include="Classes\GSMTest.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

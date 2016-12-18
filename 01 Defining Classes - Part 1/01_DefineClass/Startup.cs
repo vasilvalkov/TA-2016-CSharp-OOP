@@ -1,5 +1,7 @@
 ﻿using DefineClasses;
 
+// Class members ordering in this project is strictly based on StyleCop Rules Documentation(http://stylecop.soyuz5.com/Ordering%20Rules.html). The rules are nicely explained in this thread (http://stackoverflow.com/questions/150479/order-of-items-in-classes-fields-properties-constructors-methods).
+//
 class Startup
 {
     static void Main()

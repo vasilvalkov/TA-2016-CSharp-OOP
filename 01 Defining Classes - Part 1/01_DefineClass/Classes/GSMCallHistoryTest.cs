@@ -36,7 +36,7 @@ namespace DefineClasses
             Console.WriteLine("=============");
             foreach (var call in iPhone.CallHistory)
             {
-                Console.WriteLine("Call to {0} for {1:0.##} seconds, on {2} at {3}",
+                Console.WriteLine("Call to {0} lasted {1:0.##} seconds, on {2} at {3}",
                     call.DialedNumber,
                     call.Duration,
                     call.Date.ToString(@"dd-MMM-yyyy"),
