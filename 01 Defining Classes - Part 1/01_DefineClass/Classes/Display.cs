@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DefineClasses
+﻿namespace DefineClasses
 {
+    using System;
+
     class Display
     {   // fields
         private double? size = null;
@@ -53,7 +53,7 @@ namespace DefineClasses
                 }
                 else
                 {
-                this.numberOfColors = value;
+                    this.numberOfColors = value;
                 }
             }
         }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DefineClasses
+﻿namespace DefineClasses
 {
+    using System;
+
     class GSMTest
     {
         public static void RunTest()
@@ -27,7 +27,7 @@ namespace DefineClasses
             // Displaying the information about the static property IPhone4S
             Console.WriteLine("iPhone 4S specs");
             Console.WriteLine("==================================");
-            Console.WriteLine(GSM.IPhone4S.ToString());            
+            Console.WriteLine(GSM.IPhone4S.ToString());
         }
     }
 }

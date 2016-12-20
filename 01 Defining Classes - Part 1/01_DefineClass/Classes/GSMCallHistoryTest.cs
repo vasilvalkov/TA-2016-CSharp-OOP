@@ -1,9 +1,9 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-
-namespace DefineClasses
+﻿namespace DefineClasses
 {
+    using System;
+    using System.Globalization;
+    using System.Threading;
+
     class GSMCallHistoryTest
     {
         public static void RunTest()

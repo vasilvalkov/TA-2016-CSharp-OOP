@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DefineClasses
+﻿namespace DefineClasses
 {
+    using System;
+
     class Call
     {   // fields
         private DateTime date;
