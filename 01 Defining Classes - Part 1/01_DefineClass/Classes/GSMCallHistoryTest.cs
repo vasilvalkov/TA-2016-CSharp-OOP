@@ -66,6 +66,28 @@ namespace DefineClasses
             Console.WriteLine();
             Console.WriteLine("Recalculated total price of the calls is {0}",
                 iPhone.CalculatePriceOwed(0.37).ToString("C2", CultureInfo.GetCultureInfo("bg-BG")));
+
+            // Clear the call history and print it
+            Console.WriteLine();
+            Console.WriteLine("Clearing Call history... ");
+            Console.WriteLine();
+            iPhone.ClearCallHistory();
+            Console.WriteLine("Calls History");
+            Console.WriteLine("=============");
+
+            foreach (var call in iPhone.CallHistory)
+            {
+                Console.WriteLine("Call to {0} lasted {1:0.##} seconds, on {2} at {3}",
+                    call.DialedNumber,
+                    call.Duration,
+                    call.Date.ToString(@"dd-MMM-yyyy"),
+                    call.Time.ToString(@"hh\:mm\:ss"));
+            }
+            if (iPhone.CallHistory.Count == 0)
+            {
+                Console.WriteLine("Call History is empty");
+                Console.WriteLine();
+            }
         }
     }
 }
