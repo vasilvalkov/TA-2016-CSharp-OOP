@@ -28,6 +28,13 @@
             Console.WriteLine("List elements: {{ {0} }}", myList);
             Console.WriteLine();
 
+            Console.WriteLine("--- Trim capacity ---");
+            myList.Trim();
+            Console.WriteLine("List capacity is: {0}", myList.Capacity);
+            Console.WriteLine("List elements count is: {0}", myList.Count);
+            Console.WriteLine("List elements: {{ {0} }}", myList);
+            Console.WriteLine();
+
             Console.WriteLine("--- Remove element at index 3 ---");
             myList.RemoveAt(3);
             Console.WriteLine("List elements after removing element: {{ {0} }}", myList);
@@ -40,18 +47,22 @@
 
             Console.WriteLine("--- Find element by its value ---");
             int valueToFind = 16;
-            Console.WriteLine("{0} is at indes {1}",valueToFind, myList.Find(valueToFind));
+            Console.WriteLine("{0} is at index {1}",valueToFind, myList.Find(valueToFind));
             Console.WriteLine();
 
-            Console.WriteLine("--- Find min and max elements ---");
+            Console.WriteLine("--- Find min and max int elements ---");
+            Console.WriteLine("List of int elements: {{ {0} }}", myList);
             Console.WriteLine($"Min element is {myList.Min()}");
             Console.WriteLine($"Max element is {myList.Max()}");
+            Console.WriteLine();
+
             Console.WriteLine("--- Find min and max string elements ---");
             var myStrList = new GenericList<string>();
             myStrList.Add("Pesho");
             myStrList.Add("Gosho");
             myStrList.Add("Strahil");
             myStrList.Add("Chavdar");
+            Console.WriteLine("List of string elements: {{ {0} }}", myStrList);
             Console.WriteLine($"Min string element is {myStrList.Min()}");
             Console.WriteLine($"Max string element is {myStrList.Max()}");
 

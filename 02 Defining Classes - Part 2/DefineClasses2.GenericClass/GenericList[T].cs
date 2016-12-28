@@ -26,8 +26,16 @@
         }
         public T this[int index]
         {
-            get { return this.list[index]; }
-            set { this.list[index] = value; }
+            get
+            {
+                ValidateIndex(index);
+                return this.list[index];
+            }
+            set
+            {
+                ValidateIndex(index);
+                this.list[index] = value;
+            }
         }
         // Methods
         public void Add(T element)
@@ -65,6 +73,10 @@
             }
 
             this.count = 0;
+        }
+        public void Trim()
+        {
+            AutoResize(this.count);
         }
         public T GetElement(int index)
         {
@@ -110,12 +122,12 @@
         {
             if (this.Count == this.Capacity)
             {
-                this.AutoGrowCapacity();
+                this.AutoResize(2 * Capacity);
             }
         }
-        private void AutoGrowCapacity()
+        private void AutoResize(int capacity)
         {
-            var tempList = new T[2 * Capacity];
+            var tempList = new T[capacity];
 
             for (int i = 0; i < count; i++)
             {
@@ -123,6 +135,13 @@
             }
 
             this.list = tempList;
+        }
+        private void ValidateIndex(int index)
+        {
+            if (index < 0 || index >= this.count)
+            {
+                throw new ArgumentOutOfRangeException("Index is out of the boundaries of the list!");
+            }
         }
     }
 }

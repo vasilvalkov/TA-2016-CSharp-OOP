@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B62247CC-5891-4ED6-AED0-0182CEC2F160}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{CDBB69A4-7099-4A12-B793-94DBF9CD551B}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DefineClasses2</RootNamespace>
-    <AssemblyName>DefineClasses2</AssemblyName>
+    <RootNamespace>DefineClasses2.CustomAttributes</RootNamespace>
+    <AssemblyName>DefineClasses2.CustomAttributes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,32 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericClassTest.cs" />
-    <Compile Include="MatrixTest.cs" />
-    <Compile Include="Models3DTest.cs" />
-    <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DefineClasses2.CustomAttributes\DefineClasses2.CustomAttributes.csproj">
-      <Project>{cdbb69a4-7099-4a12-b793-94dbf9cd551b}</Project>
-      <Name>DefineClasses2.CustomAttributes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DefineClasses2.GenericClass\DefineClasses2.GenericClass.csproj">
-      <Project>{9365d0ad-ee4e-42f1-992d-bca9bd7962f3}</Project>
-      <Name>DefineClasses2.GenericClass</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DefineClasses2.Matrix\DefineClasses2.Matrix.csproj">
-      <Project>{38047dea-21f8-4c63-9217-7179e20a9c07}</Project>
-      <Name>DefineClasses2.Matrix</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DefineClasses2.Models\DefineClasses2.Models3D.csproj">
-      <Project>{2e2e0c37-2f30-4ec3-a5d3-82d0a90c7e55}</Project>
-      <Name>DefineClasses2.Models3D</Name>
-    </ProjectReference>
+    <Compile Include="VersionAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

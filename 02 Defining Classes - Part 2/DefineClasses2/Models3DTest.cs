@@ -3,6 +3,7 @@
     using Models3D;
     using System;
 
+    [Version(1,0)]
     public class Models3DTest
     {
         public static void Run()
@@ -10,10 +11,10 @@
             // Test calculating distance between two points
             Console.WriteLine("---- Distance test ----");
             Console.WriteLine();
-            Point3D a = new Point3D();
+            Point3D a = Point3D.O;
             Point3D b = new Point3D(2, 2, 2);
 
-            Console.WriteLine("Distance in 3d space is: {0:F5}", DistanceIn3D.Calculate(a, b));
+            Console.WriteLine("Distance between {0} and {1} in 3d space is: {2:F5}", a, b, DistanceIn3D.Calculate(a, b));
             Console.WriteLine();
 
             // Test paths
@@ -36,7 +37,9 @@
             path.AddPoint(new Point3D(2, 1, 6));
             PathStorage.SavePath(path);
             Console.WriteLine("Paths loaded from path storage: \r\n{0}", PathStorage.LoadAllPaths());
-            PathStorage.Clear();
+            Console.WriteLine("To test the Clear() and Delete() methods, please uncomment them in Models3DTest.cs");
+            //PathStorage.Clear();
+            //PathStorage.Delete();
         }
     }
 }
