@@ -22,6 +22,7 @@
         {
             this.FirstName = firstName;
             this.LasttName = lastName;
+            this.Age = age;
             this.FN = facultyNumber;
             this.PhoneNumber = phoneNumber;
             this.GroupNumber = groupNumber;

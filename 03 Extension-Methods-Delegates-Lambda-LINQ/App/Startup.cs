@@ -73,8 +73,28 @@
             #endregion
             //TestFirstFeboreLast(students);
             // Problem 4
+            //TestAgeRange(students);
+            // Problem 5
+            //TestOrderStudentsLINQ(students);
+            
+        }
 
-            var query = students.Where(st => st.Age >= 18 && st.Age <= 24).ToArray();
+        private static void TestOrderStudentsLINQ(Student[] students)
+        {
+            var query = students
+                        .OrderByDescending(st => st.FirstName)
+                        .ThenByDescending(st => st.LasttName)
+                        .ToArray();
+
+            Console.WriteLine(query.ToString<Student>());
+        }
+
+        private static void TestAgeRange(Student[] students)
+        {
+            var query = students
+                        .Where(st => st.Age >= 18 && st.Age <= 24)
+                        .ToArray();
+
             Console.WriteLine(query.ToString<Student>());
         }
 
@@ -82,7 +102,10 @@
         {
             Console.WriteLine("--- All students ---");
             Console.WriteLine(students.ToArray().ToString<Student>());
-            var query = students.Where(st => st.FirstName.CompareTo(st.LasttName) < 0).ToArray();
+            var query = students
+                        .Where(st => st.FirstName.CompareTo(st.LasttName) < 0)
+                        .ToArray();
+
             Console.WriteLine("--- Filtered students ---");
             Console.WriteLine(query.ToString<Student>());
         }
