@@ -9,16 +9,16 @@
         private string lastName;
         private byte age;
         private string facultyNumber;
-        private uint? phoneNumber;
+        private uint phoneNumber;
         private ushort groupNumber;
         private string email;
         private List<Mark> marks;
 
         public Student(string firstName, string lastName, byte age, string facultyNumber, ushort groupNumber)
-            : this(firstName, lastName, age, facultyNumber, null, groupNumber, string.Empty, new List<Mark>())
+            : this(firstName, lastName, age, facultyNumber, 0, groupNumber, string.Empty, new List<Mark>())
         {
         }
-        public Student(string firstName, string lastName, byte age, string facultyNumber, uint? phoneNumber, ushort groupNumber, string email, List<Mark> marks)
+        public Student(string firstName, string lastName, byte age, string facultyNumber, uint phoneNumber, ushort groupNumber, string email, List<Mark> marks)
         {
             this.FirstName = firstName;
             this.LasttName = lastName;
@@ -108,7 +108,7 @@
                 this.facultyNumber = value;
             }
         }
-        public uint? PhoneNumber
+        public uint PhoneNumber
         {
             get
             {
