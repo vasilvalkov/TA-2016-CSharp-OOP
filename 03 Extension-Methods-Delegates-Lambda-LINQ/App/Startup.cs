@@ -72,11 +72,11 @@
                 new Student("Stoyan", "Toshov", 26, "139105", 0101010101, 1, "someone@somewhere.com", marks5)
             };
             #endregion
-            //TestFirstFeboreLast(students);
+            //TestFirstFeboreLastLINQ(students);
             // Problem 4
-            //TestAgeRange(students);
+            //TestAgeRangeLINQ(students);
             // Problem 5
-            //TestOrderStudents(students);
+            //TestOrderStudentsExtMethods(students);
             //TestOrderStudentsLINQ(students);
             // Problem 6
             //var nums = new List<int> { 1, 3, 7, 21, 33, 45, 210 };
@@ -89,10 +89,7 @@
             // Problem 9
             //TestStudentGroupsLINQ(students);
             // Problem 10
-            //var studentsInGroup2 = students.FindAll(student => student.GroupNumber == 2);
-            //studentsInGroup2.Sort();
-            //Console.WriteLine("Students in group 2: {0}", studentsInGroup2.ToString<Student>());
-
+            //TestStudentGroupsExtMethods(students);
             // Problem 11
             //TestExtractStudentsByEmail(students);
             // Problem 12
@@ -100,27 +97,78 @@
             // Problem 13
             //TestExtractStudentsByMarks(students);
             // Problem 14
-
+            //TestExtractStudentsWithTwoMarksExtMethods(students);
             // Problem 15
             //TestExtractMarks(students);
             // Problem 16 *
 
             // Problem 17
-
+            //TestLongestString();
             // Problem 18
-            TestGroupedByGroupNumber(students);
-
+            //TestGroupedByGroupNumberLINQ(students);
+            // Problem 19
+            //TestGroupedByGroupNumberExtMethods(students);
+            // Problem 20 *
         }
 
-        private static void TestGroupedByGroupNumber(List<Student> students)
+        private static void TestGroupedByGroupNumberExtMethods(List<Student> students)
         {
             Console.WriteLine("--- All students by group ---");
 
-            var query = students
-                        .OrderBy(student => student.GroupNumber)
-                        .ToList();
-            
-            query.ForEach(st => Console.WriteLine("{0}: {1}", st.FullName, st.GroupNumber));
+            var studentsInGroups = students
+                                    .GroupBy(student => student.GroupNumber)
+                                    .OrderBy(g => g.Key)
+                                    .ToList();
+
+            foreach (var group in studentsInGroups)
+            {
+                Console.WriteLine("Group {0}", group.Key);
+
+                foreach (var student in group)
+                {
+                    Console.WriteLine("{0}", student.FullName);
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void TestGroupedByGroupNumberLINQ(List<Student> students)
+        {
+            Console.WriteLine("--- All students by group ---");
+
+            var studentsInGroups = from stud in students
+                                   group stud by stud.GroupNumber into g
+                                   orderby g.Key
+                                   select g;
+
+            foreach (var group in studentsInGroups)
+            {
+                Console.WriteLine("Group {0}", group.Key);
+
+                foreach (var student in group)
+                {
+                    Console.WriteLine("{0}", student.FullName);
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void TestLongestString()
+        {
+            var strArray = new string[] { "One", "Three", "Four", "Seven", "Eleven", "Thirteen" };
+            Console.WriteLine("--- All strings ---");
+            Console.WriteLine( string.Join(", ", strArray));
+            Console.WriteLine();
+
+            var longestString =
+                from str in strArray
+                where str.Length == strArray.Max(st => st.Length)
+                select str;
+
+            Console.WriteLine("--- Longest string ---");
+            Console.WriteLine(longestString.ToString<string>());
         }
 
         private static void TestExtractMarks(List<Student> students)
@@ -135,12 +183,35 @@
 
             Console.WriteLine();
 
-            Console.WriteLine("--- All students that enrolled in 2006 ---");
+            Console.WriteLine("--- All students that enrolled in 2006... ---");
             query.ForEach(st => Console.WriteLine(st.FullName));
             Console.WriteLine();
 
-            Console.WriteLine("--- And their marks ---");
-            query.ForEach(st => st.Marks.ForEach(mark => Console.WriteLine("{0}: {1}", mark.Discipline, mark.Score)));
+            Console.WriteLine("--- ...and their marks ---");
+            query.ForEach(st => st.Marks.ForEach(mark => Console.WriteLine("{0}: {1}", mark.Discipline, (int)mark.Score)));
+        }
+
+        private static void TestExtractStudentsWithTwoMarksExtMethods(List<Student> students)
+        {
+            Console.WriteLine("--- All students ---");
+            foreach (var student in students)
+            {
+                Console.WriteLine("{0}'s marks are:", student.FullName);
+
+                foreach (var mark in student.Marks)
+                {
+                    Console.WriteLine("{0}: {1} ({2})", mark.Discipline, mark.Score, (int)mark.Score);
+                }
+                Console.WriteLine();
+            }
+
+            var query = students
+                        .Where(student => student.Marks.Count(mark => (int)mark.Score == 2) == 2)
+                        .Select(student => new { FullName = student.FullName, Marks = student.Marks })
+                        .ToList();
+
+            Console.WriteLine("--- Students with exactly two marks (2) ---");
+            query.ForEach(st => Console.WriteLine(st.FullName));
         }
 
         private static void TestExtractStudentsByMarks(List<Student> students)
@@ -157,13 +228,16 @@
                 Console.WriteLine();
             }
 
-            var query = students
-                        .Where(student => student.Marks.Any(m => (int)m.Score == 6))
-                        .Select(student => new { FullName = student.FullName, Marks = student.Marks})
-                        .ToList();
-            
-            Console.WriteLine("Students with mark (6):");
-            query.ForEach(st => Console.WriteLine(st.FullName)); 
+            var query =
+                from student in students
+                where student.Marks.Any(m => (int)m.Score == 6)
+                select new { FullName = student.FullName, Marks = student.Marks };
+
+            Console.WriteLine("--- Students with at lest one mark (6) ---");
+            foreach (var student in query)
+            {
+                Console.WriteLine(student.FullName);
+            }
         }
 
         private static void TestExtractStudentsByPhone(List<Student> students)
@@ -171,16 +245,17 @@
             Console.WriteLine("--- All students ---");
             foreach (var student in students)
             {
-                Console.WriteLine("{0}'s phone number is: {1}", 
-                    student.FullName, 
+                Console.WriteLine("{0}'s phone number is: {1}",
+                    student.FullName,
                     student.PhoneNumber.ToString(new string('0', student.PhoneNumber.ToString().Length + 1)));
             }
 
-            var query = students
-                        .Where(student => student.PhoneNumber
-                                                 .ToString(new string('0', student.PhoneNumber.ToString().Length + 1))
-                                                 .StartsWith("02"))
-                        .ToList();
+            var query =
+                from student in students
+                where student.PhoneNumber
+                             .ToString(new string('0', student.PhoneNumber.ToString().Length + 1))
+                             .StartsWith("02")
+                select student;
 
             Console.WriteLine();
             Console.WriteLine("Students with phone number in Sofia: {0}", query.ToString<Student>());
@@ -194,12 +269,30 @@
                 Console.WriteLine("{0}'s e-mail is: {1}", student.FullName, student.Email);
             }
 
-            var query = students
-                        .Where(student => student.Email.EndsWith("abv.bg"))
-                        .ToList();
+            var query =
+               from student in students
+               where student.Email.EndsWith("abv.bg")
+               select student;
 
             Console.WriteLine();
             Console.WriteLine("Students with e-mail @ abv.bg: {0}", query.ToString<Student>());
+        }
+
+        private static void TestStudentGroupsExtMethods(List<Student> students)
+        {
+            Console.WriteLine("--- All students ---");
+            foreach (var student in students)
+            {
+                Console.WriteLine("{0} is in group {1}", student.FullName, student.GroupNumber);
+            }
+
+            var query = students
+                        .Where(student => student.GroupNumber == 2)
+                        .OrderBy(student => student.FirstName)
+                        .ToList();
+
+            Console.WriteLine();
+            Console.WriteLine("Students in group 2: {0}", query.ToString<Student>());
         }
 
         private static void TestStudentGroupsLINQ(List<Student> students)
@@ -209,11 +302,11 @@
             {
                 Console.WriteLine("{0} is in group {1}", student.FullName, student.GroupNumber);
             }
-            
-            var query = students
-                        .Where(student => student.GroupNumber == 2)
-                        .OrderBy(student => student.FirstName)
-                        .ToList();
+
+            var query = from student in students
+                        where student.GroupNumber == 2
+                        orderby student.FirstName
+                        select student;
 
             Console.WriteLine();
             Console.WriteLine("Students in group 2: {0}", query.ToString<Student>());
@@ -234,17 +327,24 @@
         {
             Console.WriteLine("--- Numbers divisible to 7 and 3 using Linq ---");
 
-            var query = nums.Where(x => x % (7 * 3) == 0).ToList();
+            var query = from num in nums
+                        where num % (7 * 3) == 0
+                        select num;
 
             Console.WriteLine(query.ToString<int>());
         }
 
-        private static void TestOrderStudents(List<Student> students)
+        private static void TestOrderStudentsExtMethods(List<Student> students)
         {
+            Console.WriteLine("--- All students ---");
+            Console.WriteLine(students.ToString<Student>());
+            Console.WriteLine();
+
             Console.WriteLine("--- Ordered students with Extension methods ---");
             var orderedList = students
                             .OrderByDescending(st => st.FirstName)
-                            .ThenByDescending(st => st.LasttName);
+                            .ThenByDescending(st => st.LastName)
+                            .ToList();
 
             Console.WriteLine(orderedList.ToString<Student>());
             Console.WriteLine();
@@ -253,30 +353,39 @@
         private static void TestOrderStudentsLINQ(List<Student> students)
         {
             Console.WriteLine("--- Ordered students with Linq ---");
-            var query = students
-                        .OrderByDescending(st => st.FirstName)
-                        .ThenByDescending(st => st.LasttName)
-                        .ToArray();
+            var query = from st in students
+                        orderby st.FirstName descending, st.LastName descending
+                        select st;
 
             Console.WriteLine(query.ToString<Student>());
         }
 
-        private static void TestAgeRange(List<Student> students)
+        private static void TestAgeRangeLINQ(List<Student> students)
         {
-            var query = students
-                        .Where(st => st.Age >= 18 && st.Age <= 24)
-                        .ToArray();
+            Console.WriteLine("--- All students ---");
+            foreach (var student in students)
+            {
+                Console.WriteLine("{0} is {1} years old", student.FullName, student.Age);
+            }
+            Console.WriteLine();
 
+            var query =
+                from student in students
+                where student.Age >= 18 && student.Age <= 24
+                select student;
+
+            Console.WriteLine("--- All students between 18 and 24 years of age---");
             Console.WriteLine(query.ToString<Student>());
         }
 
-        private static void TestFirstFeboreLast(List<Student> students)
+        private static void TestFirstFeboreLastLINQ(List<Student> students)
         {
             Console.WriteLine("--- All students ---");
             Console.WriteLine(students.ToArray().ToString<Student>());
-            var query = students
-                        .Where(st => st.FirstName.CompareTo(st.LasttName) < 0)
-                        .ToArray();
+            var query =
+                from student in students
+                where student.FirstName.CompareTo(student.LastName) < 0
+                select student;
 
             Console.WriteLine("--- Filtered students ---");
             Console.WriteLine(query.ToString<Student>());

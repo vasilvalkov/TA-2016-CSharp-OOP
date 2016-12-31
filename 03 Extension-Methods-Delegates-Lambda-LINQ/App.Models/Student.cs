@@ -21,7 +21,7 @@
         public Student(string firstName, string lastName, byte age, string facultyNumber, uint phoneNumber, ushort groupNumber, string email, List<Mark> marks)
         {
             this.FirstName = firstName;
-            this.LasttName = lastName;
+            this.LastName = lastName;
             this.Age = age;
             this.FN = facultyNumber;
             this.PhoneNumber = phoneNumber;
@@ -50,7 +50,7 @@
                 this.firstName = value;
             }
         }
-        public string LasttName
+        public string LastName
         {
             get
             {
