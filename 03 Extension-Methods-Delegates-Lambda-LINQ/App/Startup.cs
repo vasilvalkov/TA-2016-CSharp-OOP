@@ -196,9 +196,9 @@
             var mathsStudents = 
                 students.Join(groupsList,
                               student => student.GroupNumber,
-                              dept => dept.GroupNumber,
-                              (student, dept) => 
-                              new { StudentName = student.FullName, Department = dept.DepartmentName })
+                              group => group.GroupNumber,
+                              (student, group) => 
+                              new { StudentName = student.FullName, Department = group.DepartmentName })
                         .Where(student => student.Department == "Mathematics")
                         .ToList();
 
