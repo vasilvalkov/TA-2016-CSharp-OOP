@@ -1,24 +1,18 @@
 ﻿namespace App.Models
 {
-    using System;
+    using System.Threading;
 
-    public class Timer
+    public delegate void Execute();
+
+    public static class Timer
     {
-        public delegate string Start(int seconds);
-        
-
-        public static string Repeat(int seconds)
+        public static void RepeatEvery(int seconds, Execute action)
         {
             while (true)
             {
-                DateTime now = DateTime.Now;
-
-                if (now.Second % seconds == 0)
-                {
-                    // do something
-                }
+                action();
+                Thread.Sleep(seconds * 1000);
             }
-
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.Models
+﻿namespace App.Models
 {
     public class Group
     {
         private ushort groupNumber;
         private string department;
+
+        public Group(ushort number, string department)
+        {
+            this.GroupNumber = number;
+            this.DepartmentName = department;
+        }
 
         public ushort GroupNumber
         {
@@ -17,12 +17,20 @@ namespace App.Models
             {
                 return this.groupNumber;
             }
+            set
+            {
+                this.groupNumber = value;
+            }
         }
         public string DepartmentName
         {
             get
             {
                 return this.department;
+            }
+            set
+            {
+                this.department = value;
             }
         }
     }

@@ -7,7 +7,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Text;
-
+    
     class Startup
     {
         static void Main()
@@ -16,7 +16,7 @@
             // Problem 2
             //TestIEnumerableExtensions();
             // Problem 3
-            #region Declaring students to use in problems 3, 4, 5
+            #region Declaring students to use in the next problems
             var marks1 = new List<Mark>
             {
                 new Mark("Maths", MarkType.Excellent),
@@ -83,7 +83,9 @@
             //TestDivisibleTo7and3(nums);
             //TestDivisibleTo7and3LINQ(nums);
             // Problem 7
-
+            //Execute timerPrinting = PrintTimeNow;
+            //timerPrinting += PrintTimeIn4Hours;
+            //Timer.RepeatEvery(5, timerPrinting);
             // Problem 8 *
 
             // Problem 9
@@ -101,7 +103,7 @@
             // Problem 15
             //TestExtractMarks(students);
             // Problem 16 *
-
+            //TestGroups(students);
             // Problem 17
             //TestLongestString();
             // Problem 18
@@ -109,6 +111,17 @@
             // Problem 19
             //TestGroupedByGroupNumberExtMethods(students);
             // Problem 20 *
+
+        }
+
+        private static void PrintTimeNow()
+        {
+            Console.Clear();
+            Console.WriteLine("The time now is: {0: HH:mm:ss}", DateTime.Now);
+        }
+        private static void PrintTimeIn4Hours()
+        {
+            Console.WriteLine("The time in four hours will be: {0: HH:mm:ss}", DateTime.Now.AddHours(4));
         }
 
         private static void TestGroupedByGroupNumberExtMethods(List<Student> students)
@@ -159,7 +172,7 @@
         {
             var strArray = new string[] { "One", "Three", "Four", "Seven", "Eleven", "Thirteen" };
             Console.WriteLine("--- All strings ---");
-            Console.WriteLine( string.Join(", ", strArray));
+            Console.WriteLine(string.Join(", ", strArray));
             Console.WriteLine();
 
             var longestString =
@@ -171,6 +184,27 @@
             Console.WriteLine(longestString.ToString<string>());
         }
 
+        private static void TestGroups(List<Student> students)
+        {
+            var groupsList = new List<Group>
+            {
+               new Group(1, "Geography"),
+               new Group(2, "Mathematics"),
+               new Group(3, "Economics")
+            };
+
+            var mathsStudents = 
+                students.Join(groupsList,
+                              student => student.GroupNumber,
+                              dept => dept.GroupNumber,
+                              (student, dept) => 
+                              new { StudentName = student.FullName, Department = dept.DepartmentName })
+                        .Where(student => student.Department == "Mathematics")
+                        .ToList();
+
+            mathsStudents.ForEach(result => Console.WriteLine(string.Join(", ", result.StudentName)));
+        }
+        
         private static void TestExtractMarks(List<Student> students)
         {
             Console.WriteLine("--- All students ---");
