@@ -1,6 +1,6 @@
 ﻿namespace AnimalHierarchy
 {
-    public abstract class Animal : ISound
+    public abstract class Animal : IAnimal, ISound
     {
         private readonly SexTypes sex;
 

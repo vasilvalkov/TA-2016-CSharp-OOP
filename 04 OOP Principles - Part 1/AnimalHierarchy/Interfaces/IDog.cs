@@ -1,6 +1,6 @@
 ﻿namespace AnimalHierarchy
 {
-    public interface IDog
+    public interface IDog : IAnimal
     {
         void WagTail();
     }

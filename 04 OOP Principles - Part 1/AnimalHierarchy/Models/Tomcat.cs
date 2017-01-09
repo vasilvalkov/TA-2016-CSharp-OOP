@@ -1,6 +1,6 @@
 ﻿namespace AnimalHierarchy
 {
-    public class Tomcat : Cat, ISound
+    public class Tomcat : Cat, ISound, ICat, IAnimal
     {
         public Tomcat(string name, double age) 
             : base(name, age, SexTypes.Male)

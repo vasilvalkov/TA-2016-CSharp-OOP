@@ -8,7 +8,7 @@
     {
         static void Main()
         {   // Initialize a list of 10 students
-            List<Student> students = new List<Student>
+            List<IStudent> students = new List<IStudent>
             {
                 new Student("Pesho", "Georgiev", 11),
                 new Student("Genadi", "Stoyanov", 1),
@@ -22,7 +22,7 @@
                 new Student("Keremidka", "Tuhlova", 12)
             };
             // Initialize a list of 10 workers
-            List<Worker> workers = new List<Worker>
+            List<IWorker> workers = new List<IWorker>
             {
                 new Worker("Ivan", "Ivanov", 320, 8, 5),
                 new Worker("Strahil", "Mechkov", 295, 8, 5),

@@ -7,17 +7,17 @@
         private ICollection<ISchoolClass> classes;
         private string name;
 
-        public School(string name)
+        public School(string name, ICollection<ISchoolClass> classes)
         {
             this.name = name;
-            classes = new HashSet<ISchoolClass>();
+            this.classes = classes;
         }
 
-        public void AddClass(SchoolClass schoolClass)
+        public void AddClass(ISchoolClass schoolClass)
         {
             this.classes.Add(schoolClass);
         }
-        public void RemoveClass(SchoolClass schoolClass)
+        public void RemoveClass(ISchoolClass schoolClass)
         {
             this.classes.Remove(schoolClass);
         }

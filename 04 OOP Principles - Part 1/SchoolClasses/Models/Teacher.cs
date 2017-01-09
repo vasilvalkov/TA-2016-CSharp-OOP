@@ -6,10 +6,10 @@
     {
         private ICollection<Discipline> disciplines;
 
-        public Teacher(string name) 
+        public Teacher(string name, ICollection<Discipline> disciplines) 
             : base(name)
         {
-            this.disciplines = new HashSet<Discipline>();
+            this.disciplines = disciplines;
         }
 
         public ICollection<Discipline> Disciplines

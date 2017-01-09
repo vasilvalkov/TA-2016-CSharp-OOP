@@ -1,6 +1,6 @@
 ﻿namespace StudentsAndWorkers
 {
-    public interface IStudent
+    public interface IStudent : IHuman
     {
         byte Grade { get; }
     }

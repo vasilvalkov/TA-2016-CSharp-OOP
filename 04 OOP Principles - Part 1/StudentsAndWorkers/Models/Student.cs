@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Student : Human, IStudent
+    public class Student : Human, IStudent, IHuman
     {
         private byte grade;
 

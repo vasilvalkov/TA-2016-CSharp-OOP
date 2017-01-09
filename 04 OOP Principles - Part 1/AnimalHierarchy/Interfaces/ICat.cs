@@ -1,6 +1,6 @@
 ﻿namespace AnimalHierarchy
 {
-    public interface ICat
+    public interface ICat : IAnimal
     {
         void Purr();
     }

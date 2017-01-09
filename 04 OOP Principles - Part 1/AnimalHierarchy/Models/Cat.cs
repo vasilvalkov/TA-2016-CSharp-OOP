@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Cat : Animal, ISound
+    public class Cat : Animal, ISound, ICat, IAnimal
     {
         public Cat(string name, double age, SexTypes sex) 
             : base(name, age, sex)

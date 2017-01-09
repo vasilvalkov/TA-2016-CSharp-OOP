@@ -1,6 +1,6 @@
 ﻿namespace AnimalHierarchy
 {
-    public interface IFrog
+    public interface IFrog : IAnimal
     {
         void Metamorphose();
     }

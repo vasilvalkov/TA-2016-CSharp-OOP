@@ -2,7 +2,7 @@
 {
     public interface ISchool
     {
-        void AddClass(SchoolClass schoolClass);
-        void RemoveClass(SchoolClass schoolClass);
+        void AddClass(ISchoolClass schoolClass);
+        void RemoveClass(ISchoolClass schoolClass);
     }
 }

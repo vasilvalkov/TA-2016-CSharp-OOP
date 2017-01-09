@@ -5,10 +5,10 @@
 
     public class SchoolClass : ISchoolClass, IComment
     {
-        private ICollection<Person> people;
-        private string classId;
+        private readonly string classId;
+        private ICollection<IPerson> people;
 
-        public SchoolClass(string id)
+        public SchoolClass(string id, ICollection<IPerson> people)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -19,7 +19,7 @@
                 this.classId = id; 
             }
 
-            this.people = new HashSet<Person>();
+            this.people = people;
         }
 
         public string Id
@@ -29,7 +29,7 @@
                 return this.classId;
             }
         }
-        public ICollection<Person> People
+        public ICollection<IPerson> People
         {
             get
             {
@@ -37,11 +37,11 @@
             }
         }
 
-        public void AddPerson(Person person)
+        public void AddPerson(IPerson person)
         {
             this.people.Add(person);
         }
-        public void RemovePerson(Person person)
+        public void RemovePerson(IPerson person)
         {
             this.people.Remove(person);
         }

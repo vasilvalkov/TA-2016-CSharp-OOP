@@ -1,6 +1,6 @@
 ﻿namespace StudentsAndWorkers
 {
-    public class Worker : Human, IWorker
+    public class Worker : Human, IWorker, IHuman
     {
         public Worker(string firstName, string lastName, decimal weekSalary, byte workHoursPerDay, byte workDays)
             : base(firstName, lastName)

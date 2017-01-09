@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IFrog.cs" />
     <Compile Include="Interfaces\IDog.cs" />
     <Compile Include="Interfaces\ICat.cs" />

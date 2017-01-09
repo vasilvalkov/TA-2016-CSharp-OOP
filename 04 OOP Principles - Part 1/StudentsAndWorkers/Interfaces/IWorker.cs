@@ -1,6 +1,6 @@
 ﻿namespace StudentsAndWorkers
 {
-    public interface IWorker
+    public interface IWorker : IHuman
     {
         byte WorkDays { get; set; }
         decimal WeekSalary { get; set; }
