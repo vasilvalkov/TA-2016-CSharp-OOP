@@ -5,7 +5,7 @@
     public interface ISchoolClass
     {
         string Id { get; }
-        ICollection<IPerson> People { get; }
+        ISet<IPerson> People { get; }
 
         void AddPerson(IPerson person);
         void RemovePerson(IPerson person);

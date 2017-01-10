@@ -4,15 +4,15 @@
 
     public class Teacher : Person, ITeacher, IComment
     {
-        private ICollection<Discipline> disciplines;
+        private ISet<Discipline> disciplines;
 
-        public Teacher(string name, ICollection<Discipline> disciplines) 
+        public Teacher(string name, ISet<Discipline> disciplines) 
             : base(name)
         {
             this.disciplines = disciplines;
         }
 
-        public ICollection<Discipline> Disciplines
+        public ISet<Discipline> Disciplines
         {
             get
             {

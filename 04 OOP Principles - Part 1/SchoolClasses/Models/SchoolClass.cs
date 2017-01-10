@@ -6,9 +6,9 @@
     public class SchoolClass : ISchoolClass, IComment
     {
         private readonly string classId;
-        private ICollection<IPerson> people;
+        private ISet<IPerson> people;
 
-        public SchoolClass(string id, ICollection<IPerson> people)
+        public SchoolClass(string id, ISet<IPerson> people)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -29,7 +29,7 @@
                 return this.classId;
             }
         }
-        public ICollection<IPerson> People
+        public ISet<IPerson> People
         {
             get
             {

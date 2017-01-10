@@ -4,14 +4,20 @@
 
     public class School : ISchool
     {
-        private ICollection<ISchoolClass> classes;
+        private ISet<ISchoolClass> classes;
         private string name;
 
-        public School(string name, ICollection<ISchoolClass> classes)
+        public School (string name)
+            : this(name, new HashSet<ISchoolClass>())
+        {
+        }
+        public School (string name, ISet<ISchoolClass> classes)
         {
             this.name = name;
             this.classes = classes;
         }
+
+        public string Name { get { return this.name; } }
 
         public void AddClass(ISchoolClass schoolClass)
         {

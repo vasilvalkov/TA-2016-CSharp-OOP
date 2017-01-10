@@ -10,15 +10,22 @@
         {
             Student studGero = new Student("Georgi Peshov", 11);
             Teacher teacherRumen = new Teacher("Rumen Zasmyan", new HashSet<Discipline>());
+
             // DEMONSTRATE COMMENTS
+            Console.WriteLine("--- Commenting ---");
             Console.WriteLine(studGero.Comment("Hi there! How's OOP?"));
             teacherRumen.Comment("You have homework to do. Don't miss the deadline!");
             teacherRumen.AddDiscipline(new Discipline(DisciplineTypes.Sport));
             Console.WriteLine(teacherRumen.Disciplines.First().Comment("You have a new teacher!"));
             Console.WriteLine();
 
-            // DEMONSTARATE THE SCHOOL CLASS
+            // DEMONSTARATE THE SCHOOL AND SCHOOL CLASS
+            Console.WriteLine("--- Introduce new school year ---");
+            ISchool school = new School("Vasil Levski");
             SchoolClass class11a = new SchoolClass("11a", new HashSet<IPerson>());
+            school.AddClass(class11a);
+            Console.WriteLine("Class {0} just started the new school year at school '{1}'", class11a.Id, school.Name);
+            Console.WriteLine();
             // Add different kinds of persons into a school class
             class11a.AddPerson(new Student("Pencho", 16));
             class11a.AddPerson(new Student("Gosho", 6));
