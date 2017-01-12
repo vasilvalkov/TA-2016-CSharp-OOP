@@ -35,7 +35,7 @@
                     value,
 					BrandNameMaxLength,
 					BrandNameMinLength, 
-                    string.Format(GlobalErrorMessages.InvalidStringLength, "Brand name", BrandNameMinLength, BrandNameMaxLength));
+                    string.Format(GlobalErrorMessages.InvalidStringLength, "Product brand", BrandNameMinLength, BrandNameMaxLength));
 
 				this.brand = value;
 			}
@@ -76,9 +76,9 @@
 		public virtual string Print()
 		{
 			StringBuilder text = new StringBuilder();
-			text.AppendLine($"- {this.Brand} – {this.Name}:");
-			text.AppendLine($"  * Price: ${this.Price}");
-			text.AppendLine($"  * For gender: {this.Gender}");
+			text.AppendLine(string.Format("- {0} - {1}:", this.Brand, this.Name));
+			text.AppendLine(string.Format("  * Price: ${0}", this.Price));
+			text.Append(string.Format("  * For gender: {0}", this.Gender));
 
 			return text.ToString();
 		}

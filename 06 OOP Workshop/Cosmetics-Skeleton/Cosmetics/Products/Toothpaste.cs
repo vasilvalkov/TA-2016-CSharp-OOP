@@ -51,7 +51,7 @@
 		{
 			StringBuilder text = new StringBuilder();
 			text.AppendLine(base.Print());
-			text.AppendLine($"  * Ingredients: {this.Ingredients}");
+			text.Append(string.Format("  * Ingredients: {0}", this.Ingredients));
 
 			return text.ToString();
 		}

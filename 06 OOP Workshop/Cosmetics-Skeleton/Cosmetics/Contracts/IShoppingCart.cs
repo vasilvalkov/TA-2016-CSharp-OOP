@@ -4,7 +4,7 @@
 
 	public interface IShoppingCart
 	{
-		ICollection<IProduct> ProductList { get; set; }
+		ICollection<IProduct> ProductList { get;}
 
 		void AddProduct(IProduct product);
 

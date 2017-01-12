@@ -61,19 +61,26 @@
         {
             StringBuilder text = new StringBuilder();
 
-            ICollection<IProduct> sortedProducts = this.ProductList
+            IList<IProduct> sortedProducts = this.ProductList
                                                             .OrderBy(prod => prod.Brand)
                                                             .ThenByDescending(prod => prod.Price)
                                                             .ToArray();
 
-            text.AppendLine($"{this.name} category – {this.ProductList.Count} products/product in total");
+            text.AppendLine(string.Format("{0} category - {1} {2} in total", this.name, this.ProductList.Count, (this.ProductList.Count == 1 ? "product" : "products")));
 
-            foreach (var item in sortedProducts)
+            for (int i = 0; i < sortedProducts.Count; i++)
             {
-                text.AppendLine(item.Print());
+                if (i != sortedProducts.Count - 1)
+                {
+                    text.AppendLine(sortedProducts[i].Print());
+                }
+                else
+                {
+                    text.Append(sortedProducts[i].Print());
+                }
             }
 
-            return text.ToString();
+            return text.ToString().Trim();
         }
 
         public void RemoveCosmetics(IProduct cosmetics)

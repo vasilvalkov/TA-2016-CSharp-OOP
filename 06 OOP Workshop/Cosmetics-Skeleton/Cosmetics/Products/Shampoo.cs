@@ -56,8 +56,8 @@
         {
             StringBuilder text = new StringBuilder();
             text.AppendLine(base.Print());
-            text.AppendLine($"  * Quantity: {this.Milliliters} ml");
-            text.AppendLine($"  * Usage: {this.Usage}");
+            text.AppendLine(string.Format("  * Quantity: {0} ml", this.Milliliters));
+            text.Append(string.Format("  * Usage: {0}", this.Usage));
 
             return text.ToString();
         }

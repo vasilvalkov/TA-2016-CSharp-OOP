@@ -16,17 +16,17 @@
         public ICollection<IProduct> ProductList
         {
             get { return new List<IProduct>(this.productList); }
-            set { this.productList = value; }
+            private set { this.productList = value; }
         }
 
         public void AddProduct(IProduct product)
         {
-            this.ProductList.Add(product);
+            this.productList.Add(product);
         }
 
         public void RemoveProduct(IProduct product)
         {
-            this.ProductList.Remove(product);
+            this.productList.Remove(product);
         }
 
         public bool ContainsProduct(IProduct product)
@@ -36,7 +36,7 @@
 
         public decimal TotalPrice()
         {
-            return this.ProductList.Sum(prod => prod.Price);
+            return this.ProductList.Sum(x => x.Price);
         }
     }
 }
