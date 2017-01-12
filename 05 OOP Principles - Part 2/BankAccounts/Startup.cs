@@ -2,6 +2,7 @@
 {
     using Models;
     using System;
+    using System.Linq;
     using System.Collections.Generic;
 
     class Startup
@@ -17,6 +18,12 @@
             };
 
             Bank bank = new Bank(accounts);
+            bank.Accounts
+                    .Where(account => account.GetType().Name == "Deposit" && 
+                                      account.Customer.FullName == "Studena Voda OOD".ToUpper())
+                    .Cast<Deposit>()
+                    .First()
+                    .WithdrawAmount(4000);
 
             bank.AddAccount(new Loan(new Company("ET Cveten Uzhast"), 0.254m, 36, 9000m));
             

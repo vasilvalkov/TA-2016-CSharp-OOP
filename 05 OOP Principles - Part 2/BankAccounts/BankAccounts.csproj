@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IDeposit.cs" />
-    <Compile Include="Interfaces\ILoan.cs" />
     <Compile Include="Models\Bank.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Account.cs" />
