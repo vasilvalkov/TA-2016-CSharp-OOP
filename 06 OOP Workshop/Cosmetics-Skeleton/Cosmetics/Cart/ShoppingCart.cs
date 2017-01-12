@@ -1,12 +1,9 @@
-﻿using Cosmetics.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cosmetics.Cart
+﻿namespace Cosmetics.Cart
 {
+    using Cosmetics.Contracts;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ShoppingCart : IShoppingCart
     {
         private ICollection<IProduct> productList;

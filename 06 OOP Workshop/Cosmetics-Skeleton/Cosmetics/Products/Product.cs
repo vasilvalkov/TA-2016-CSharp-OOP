@@ -1,11 +1,7 @@
 ﻿namespace Cosmetics.Products
 {
 	using Cosmetics.Contracts;
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
 	using System.Text;
-	using System.Threading.Tasks;
 	using Common;
 
 	public abstract class Product : IProduct
@@ -15,9 +11,9 @@
 		private const int BrandNameMinLength = 2;
 		private const int BrandNameMaxLength = 10;
 		protected decimal price;
-		protected string name;
-		protected string brand;
-		protected GenderType gender;
+		private string name;
+		private string brand;
+		private GenderType gender;
 
 		public Product(string name, string brand, decimal price, GenderType gender)
 		{
@@ -33,11 +29,13 @@
 			{
 				return this.brand;
 			}
-			protected set
+			private set
 			{
-				Validator.CheckIfStringLengthIsValid(value,
+				Validator.CheckIfStringLengthIsValid(
+                    value,
 					BrandNameMaxLength,
-					BrandNameMinLength, string.Format(GlobalErrorMessages.InvalidStringLength, "Brand name", BrandNameMinLength, BrandNameMaxLength));
+					BrandNameMinLength, 
+                    string.Format(GlobalErrorMessages.InvalidStringLength, "Brand name", BrandNameMinLength, BrandNameMaxLength));
 
 				this.brand = value;
 			}
@@ -49,7 +47,7 @@
 			{
 				return this.gender;
 			}
-			protected set
+			private set
 			{
 				this.gender = value;
 			}
@@ -63,9 +61,11 @@
 			}
 			private set
 			{
-				Validator.CheckIfStringLengthIsValid(value,
+				Validator.CheckIfStringLengthIsValid(
+                    value,
 					ProductNameMaxLength,
-					ProductNameMinLength, string.Format(GlobalErrorMessages.InvalidStringLength, "Product name", ProductNameMinLength, ProductNameMaxLength));
+					ProductNameMinLength, 
+                    string.Format(GlobalErrorMessages.InvalidStringLength, "Product name", ProductNameMinLength, ProductNameMaxLength));
 
 				this.name = value;
 			}
