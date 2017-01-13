@@ -44,7 +44,7 @@
         }
         public void DepositAmount(decimal amount)
         {
-            this.balance += balance;
+            this.balance += amount;
         }
         public override string ToString()
         {

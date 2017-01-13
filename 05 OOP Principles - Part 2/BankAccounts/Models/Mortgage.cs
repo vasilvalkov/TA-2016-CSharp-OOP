@@ -10,7 +10,7 @@
         public Mortgage(ICustomer customer, decimal interestPerMonth, ushort termInMonths, decimal amount)
             : base(customer, interestPerMonth, termInMonths)
         {
-            this.balance = amount;
+            this.balance = amount > 0 ? amount * (-1) : amount;
         }
 
         public override decimal InterestPerMonth
